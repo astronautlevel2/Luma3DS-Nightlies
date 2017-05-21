@@ -1,4 +1,7 @@
-var http = require('http')
+#!/usr/bin/env nodejs
+var http = require('http');
+var sqlite3 = require('sqlite3');
+var db = new sqlite3.Database("Database.db");
 
 var server = http.createServer(function(req, res) {
     var data = "";
@@ -11,11 +14,10 @@ var server = http.createServer(function(req, res) {
         req.on('end', function() {
             data = JSON.parse(data);
             if (data.ref == "refs/heads/master") {
-                console.log("Commit");
-                console.log("Commit hash: " + data.head_commit.id.substring(0,7));
-                console.log("Commit date: " + data.head_commit.timestamp);
-                console.log("Commit message: " + data.head_commit.message);
-                console.log("Commit url: " + data.head_commit.url);
+                var commit = data.head_commit.id.substring(0,7);
+                var com = "INSERT INTO BUILDS VALUES('Luma-" + commit + ".zip','" + commit + "','" + data.head_commit.url + "','" + data.head_commit.timestamp + "','" + data.head_commit.message + "');"
+                console.log(com)
+                db.exec(com);
             }
         });
     }
