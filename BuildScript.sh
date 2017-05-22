@@ -5,6 +5,6 @@ git clone git@github.com:AuroraWright/Luma3DS.git
 cd Luma3DS
 make
 zip "Luma3DS-${commit}.zip" out/boot.firm
-mv "Luma3DS-${commit}.zip" ../
+mv "Luma3DS-${commit}.zip" ../../Luma3DS-Site/builds
 cd ..
 rm -rf Luma3DS
