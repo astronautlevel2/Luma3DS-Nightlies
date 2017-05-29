@@ -41,7 +41,7 @@ var server = http.createServer(function(req, res) {
                 db.all("SELECT * FROM BUILDS", function(err, rows) {
                     rows.reverse();
                     rows.forEach(function (row) {
-                        fs.appendFileSync("../Luma3DS-Site/index.html", "<tr><td><p><a href=/Luma3DS/builds/Luma3DS-" + row.COMMIT + ".zip>Luma3DS-" + row.COMMIT + ".zip</a></p></td><td><a href=" + row.COMMITURL + ">" + row.COMMIT + "</a></td><td>" + row.BRANCH + "</td><td>" + row.DATE + "</td><td>" + row.MESSAGE + "</td></tr>\n");
+                        fs.appendFileSync("../Luma3DS-Site/index.html", "<tr><td nowrap><a href=/Luma3DS/builds/Luma3DS-" + row.COMMIT + ".zip>Luma3DS-" + row.COMMIT + ".zip</a></td><td nowrap><a href=" + row.COMMITURL + ">" + row.COMMIT + "</a></td><td nowrap>" + row.BRANCH + "</td><td nowrap>" + row.DATE + "</td><td>" + row.MESSAGE + "</td></tr>\n");
                     });
                     fs.appendFileSync("../Luma3DS-Site/index.html", fs.readFileSync("../Luma3DS-Site/bottom.html"));
                     exec("./CommitScript.sh");
