@@ -37,8 +37,8 @@ var server = http.createServer(function(req, res) {
                 command += `,'${millis}'`
                 command += `,'${branch}'`
                 command += ");"
-                console.log(com);
-                db.exec(com);
+                console.log(command);
+                db.exec(command);
                 exec("./BuildScript.sh " + commit + " " + branch);
                 console.log("Build Complete");
 
