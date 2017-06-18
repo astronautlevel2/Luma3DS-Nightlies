@@ -28,7 +28,15 @@ var server = http.createServer(function(req, res) {
                 var millis = date.getTime();
                 date = date.getFullYear() + "-" +  (date.getMonth() + 1) + "-" + date.getDate();
                 message = message.split("\n")[0];
-                var com = "INSERT INTO BUILDS VALUES('Luma-" + commit + ".zip','" + commit + "','" + data.head_commit.url + "','" + date + "',\"" + message + "\"," + millis + ",\"" + branch + "\");"
+                var command = "INSERT INTO BUILDS VALUES("
+                command += `'Luma-${commit}.zip'`
+                command += `,'${commit}'`
+                command += `,'${data.head_commit.url}'`
+                command += `,'${date}'`
+                command += `,'${message}'`
+                command += `,'${millis}'`
+                command += `,'${branch}'`
+                command += ");"
                 console.log(com);
                 db.exec(com);
                 exec("./BuildScript.sh " + commit + " " + branch);
