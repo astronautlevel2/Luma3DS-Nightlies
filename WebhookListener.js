@@ -39,7 +39,7 @@ var server = http.createServer(function(req, res) {
                 command += ");"
                 console.log(command);
                 db.exec(command);
-                exec("./BuildScript.sh " + commit + " " + branch);
+                exec("bash ./BuildScript.sh " + commit + " " + branch);
                 console.log("Build Complete");
 
                 fs.unlink("../Luma3DS-Site/index.html");
