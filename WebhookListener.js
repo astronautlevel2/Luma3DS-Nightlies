@@ -28,6 +28,7 @@ var server = http.createServer(function(req, res) {
                 var millis = date.getTime();
                 date = date.getFullYear() + "-" +  (date.getMonth() + 1) + "-" + date.getDate();
                 message = message.split("\n")[0];
+                message = message.replace(/\"/g, "");
                 var command = "INSERT INTO BUILDS VALUES("
                 command += `'Luma-${commit}.zip'`
                 command += `,'${commit}'`
