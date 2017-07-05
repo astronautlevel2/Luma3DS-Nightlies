@@ -20,6 +20,7 @@ var server = http.createServer(function(req, res) {
                 var commit = data.head_commit.id.substring(0,7);
                 var message = data.head_commit.message;
                 var branch = data.ref.substring(11);
+                if (branch === "legacy") process.exit(-1); //We don't support the legacy branch anymore, blame GBATemp
                 if (message.length > 75) {
                     message = data.head_commit.message.substring(0,75);
                     message += "..."
